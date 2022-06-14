@@ -1,0 +1,14 @@
+{
+  "_output_dir": "/Users/Andrew/git/pack",
+  "_template": "gh:cjolowicz/cookiecutter-hypermodern-python",
+  "author": "Andrew Schweitzer",
+  "copyright_year": "2022",
+  "development_status": "Development Status :: 1 - Planning",
+  "email": "schweitz72@gmail.com",
+  "friendly_name": "Whenwasi",
+  "github_user": "anschweitzer",
+  "license": "MIT",
+  "package_name": "whenwasi",
+  "project_name": "whenwasi",
+  "version": "0.0.0"
+}
