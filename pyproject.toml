@@ -19,6 +19,7 @@ Changelog = "https://github.com/anschweitzer/whenwasi/releases"
 python = "^3.8"
 click = ">=8.0.1"
 httpx = "^0.23.0"
+pandas = "^1.4.3"
 
 [tool.poetry.dev-dependencies]
 Pygments = ">=2.10.0"
