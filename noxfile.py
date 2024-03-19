@@ -166,13 +166,26 @@ def mypy(session: Session) -> None:
 @session(python=python_versions)
 def tests(session: Session) -> None:
     """Run the test suite."""
+    import time
+
+    t = time.time()
     session.install(".")
+    print(f"1  {time.time() - t:5.3f}")
+    t = time.time()
     session.install("coverage[toml]", "pytest", "pygments")
+    print(f"2  {time.time() - t:5.3f}")
+    posargs = session.posargs[:]
+    if "-s" not in posargs:
+        posargs.append("-s")
     try:
-        session.run("coverage", "run", "--parallel", "-m", "pytest", *session.posargs)
+        t = time.time()
+        session.run("coverage", "run", "--parallel", "-m", "pytest", *posargs)
+        print(f"3  {time.time() - t:5.3f}")
     finally:
+        t = time.time()
         if session.interactive:
             session.notify("coverage", posargs=[])
+        print(f"4  {time.time() - t:5.3f}")
 
 
 @session(python=python_versions[1])
