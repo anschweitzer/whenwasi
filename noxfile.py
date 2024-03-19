@@ -179,7 +179,7 @@ def tests(session: Session) -> None:
         posargs.append("-s")
     try:
         t = time.time()
-        session.run("coverage", "run", "--parallel", "-m", "pytest", *posargs)
+        session.run("coverage", "run", "--parallel", "-m", "pytest", *session.posargs)
         print(f"3  {time.time() - t:5.3f}")
     finally:
         t = time.time()
