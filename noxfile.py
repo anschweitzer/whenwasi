@@ -169,7 +169,7 @@ def tests(session: Session) -> None:
     import time
 
     t = time.time()
-    session.install(".")
+    session.install("-vvv", ".")
     print(f"1  {time.time() - t:5.3f}")
     t = time.time()
     session.install("coverage[toml]", "pytest", "pygments")
@@ -192,7 +192,7 @@ def tests(session: Session) -> None:
 def coverage(session: Session) -> None:
     """Produce the coverage report."""
     args = session.posargs or ["report"]
-
+    session.install("distutils")
     session.install("coverage[toml]")
 
     if not session.posargs and any(Path().glob(".coverage.*")):
