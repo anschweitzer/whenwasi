@@ -115,10 +115,8 @@ jobs:
 
       - name: Upgrade pip
         run: |
-          python -c "import distutils"
           pip install --constraint=.github/workflows/constraints.txt pip
           pip --version
-          python -c "import distutils"
 
       - name: Install Poetry
         run: |
@@ -138,7 +136,6 @@ jobs:
 
       - name: Combine coverage data and display human readable report
         run: |
-          python -c "import distutils"
           nox --session=coverage
 
       - name: Create coverage report
