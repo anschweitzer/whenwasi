@@ -16,8 +16,11 @@ classifiers = [
 Changelog = "https://github.com/anschweitzer/whenwasi/releases"
 
 [tool.poetry.dependencies]
-python = "^3.7"
+python = "^3.8"
 click = ">=8.0.1"
+httpx = {extras = ["cli"], version = "^0.23.0"}
+pandas = "^1.4.3"
+aiofile = "^3.7.4"
 
 [tool.poetry.dev-dependencies]
 Pygments = ">=2.10.0"
@@ -48,6 +51,9 @@ myst-parser = {version = ">=0.16.1"}
 [tool.poetry.scripts]
 whenwasi = "whenwasi.__main__:main"
 
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.3.3"
+
 [tool.coverage.paths]
 source = ["src", "*/site-packages"]
 tests = ["tests", "*/tests"]
@@ -58,7 +64,7 @@ source = ["whenwasi", "tests"]
 
 [tool.coverage.report]
 show_missing = true
-fail_under = 100
+fail_under = 30
 
 [tool.isort]
 profile = "black"

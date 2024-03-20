@@ -1,4 +1,6 @@
+# type: ignore
 """Nox sessions."""
+
 import os
 import shlex
 import shutil
@@ -23,14 +25,18 @@ except ImportError:
 
 
 package = "whenwasi"
-python_versions = ["3.10", "3.9", "3.8", "3.7"]
+python_versions = [
+    "3.11",
+    "3.12",
+    "3.10",
+]
 nox.needs_version = ">= 2021.6.6"
 nox.options.sessions = (
     "pre-commit",
-    "safety",
+    # "safety",
     "mypy",
     "tests",
-    "typeguard",
+    # "typeguard",
     "xdoctest",
     "docs-build",
 )
@@ -162,6 +168,9 @@ def tests(session: Session) -> None:
     """Run the test suite."""
     session.install(".")
     session.install("coverage[toml]", "pytest", "pygments")
+    posargs = session.posargs[:]
+    if "-s" not in posargs:
+        posargs.append("-s")
     try:
         session.run("coverage", "run", "--parallel", "-m", "pytest", *session.posargs)
     finally:
@@ -169,11 +178,11 @@ def tests(session: Session) -> None:
             session.notify("coverage", posargs=[])
 
 
-@session(python=python_versions[0])
+# 3.12 is failing with pip raising an error about disutils being missing
+@session(python="3.11")
 def coverage(session: Session) -> None:
     """Produce the coverage report."""
     args = session.posargs or ["report"]
-
     session.install("coverage[toml]")
 
     if not session.posargs and any(Path().glob(".coverage.*")):

@@ -1,4 +1,5 @@
 """Sphinx configuration."""
+
 project = "Whenwasi"
 author = "Andrew Schweitzer"
 copyright = "2022, Andrew Schweitzer"
